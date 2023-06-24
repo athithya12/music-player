@@ -2,6 +2,8 @@ import { Box, Group, Stack, Tabs, Title } from '@mantine/core';
 import { SideMenuItemLabelEnum } from 'enums';
 import { ReactElement } from 'react';
 import { sideMenuItems } from '../constants';
+import CurrentlyPlaying from './currently-playing';
+import Queue from './queue';
 
 interface Props {
   currentPage: SideMenuItemLabelEnum;
@@ -56,26 +58,17 @@ const Layout: React.FC<Props> = ({ currentPage, children }) => {
         </Box>
         <Box sx={{ height: 'calc(100vh - 80px)' }}>{children}</Box>
       </Stack>
-      <Box
+      <Stack
         px={16}
+        spacing={16}
         sx={(theme) => ({
           height: '100%',
           borderLeft: `1px solid ${theme.colors.gray['4']}`,
         })}
       >
-        <Box
-          sx={{
-            display: 'flex',
-            height: 80,
-            width: 320,
-            alignItems: 'center',
-          }}
-        >
-          <Title align="start" order={2}>
-            Now Playing
-          </Title>
-        </Box>
-      </Box>
+        <CurrentlyPlaying />
+        <Queue />
+      </Stack>
     </Group>
   );
 };
